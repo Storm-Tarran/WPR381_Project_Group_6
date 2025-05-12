@@ -1,9 +1,11 @@
+/* Styling for the body (Whole website) */
 body {
     margin: 0;
     padding: 0;
     height: 100%;
     background: #f5f5f5;
 }
+/* Created styling for the nav bar */
 .navbar1{
     display: flex;
     align-items: center;
@@ -11,12 +13,14 @@ body {
     padding: 1rem 2rem;
     background-color: black;
 }
+/* Added styling for the logo */
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
     text-decoration: none;
     color: white;
 }
+/* Added styling for the nav bar links */
 .nav-links{
     list-style: none;
     display: flex;
@@ -24,15 +28,18 @@ body {
     padding: 0;
     color: white;
 }
+/* Added styling for the nav bar links */
 .nav-links li {
     margin-left: 1.5rem;
     color: white;
 }
+/* Added styling for the nav bar links */
 .nav-links a {
     text-decoration: none;
     font-size: 1rem;
     color: white;
 }
+/* Added styling for the footer at the bottom of each page */
 .footer1{
     background-color: black;
     color: white;
@@ -42,6 +49,8 @@ body {
     bottom: 0;
     width: 100%;    
 }
+
+/* Events Page */
 .container1{
     padding: 20px;
 }
@@ -84,6 +93,7 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
 }
 
+/* Home Page */
 .home-container {
     display: flex;
     flex-direction: column;
