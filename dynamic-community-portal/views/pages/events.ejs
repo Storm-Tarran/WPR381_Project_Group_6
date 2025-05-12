@@ -11,7 +11,7 @@
     contact: 'john@greencommunity.org',
     category: 'Volunteer',
     price: 'Free',
-    imageUrl: '/images/clean-up.jpg',
+    imageUrl: '/images/events/community-clean-up.jpg',
     registrationLink: 'https://example.com/register-cleanup'
   },
   {
@@ -24,7 +24,7 @@
     contact: 'anna@foodhelp.org',
     category: 'Charity',
     price: 'Free',
-    imageUrl: '/images/food-drive.jpg',
+    imageUrl: '/images/events/Food-Drive.jpg',
     registrationLink: 'https://example.com/register-fooddrive'
   },
   {
@@ -37,7 +37,7 @@
     contact: 'watch@neighborhood.org',
     category: 'Community Meeting',
     price: 'Free',
-    imageUrl: '/images/watch-meeting.jpg',
+    imageUrl: '/images/events/watch-meeting.jpg',
     registrationLink: 'https://example.com/register-watch'
   },
   {
@@ -50,7 +50,7 @@
     contact: 'linda@library.org',
     category: 'Social',
     price: 'Free',
-    imageUrl: '/images/book-club.jpg',
+    imageUrl: '/images/events/book-club.jpg',
     registrationLink: 'https://example.com/register-bookclub'
   },
   {
@@ -63,7 +63,7 @@
     contact: 'mark@neighborsunite.org',
     category: 'Social',
     price: 'Free',
-    imageUrl: '/images/potluck.jpg',
+    imageUrl: '/images/events/potluck.png',
     registrationLink: 'https://example.com/register-potluck'
   },
   {
@@ -76,7 +76,7 @@
     contact: 'events@cityhall.org',
     category: 'Festival',
     price: 'Free',
-    imageUrl: '/images/parade.jpg',
+    imageUrl: '/images/events/parade.jpg',
     registrationLink: 'https://example.com/register-parade'
   },
   {
@@ -89,24 +89,24 @@
     contact: 'celebrate@city.org',
     category: 'Celebration',
     price: 'Free',
-    imageUrl: '/images/newyear.jpg',
+    imageUrl: '/images/events/newyear.jpg',
     registrationLink: 'https://example.com/register-newyear'
   }
 ]; %>
 
-<div class = "container1">
+<div class="container1">
   <h1>Upcoming Events</h1>
   <input type="text" id="searchInput" placeholder="Search events...">
 
   <ul class="event-list" id="eventList">
     <% events.forEach((event, index) => { %>
-      <li class="event-item" data-title="<%= event.title.toLowerCase() %>">
+    <li class="event-item" id="event-<%= index %>" data-title="<%= event.title.toLowerCase() %>">
         <h2><%= event.title %></h2>
         <button class="toggle-btn" onclick="toggleDetails('<%= index %>')">Show Details</button>
 
         <div class="event-details" id="details-<%= index %>">
           <% if (event.imageUrl) { %>
-            <img src="<%= event.imageUrl %>" alt="<%= event.title %>">
+            <img src="<%= event.imageUrl %>" alt="<%= event.title %>"class = "event-image" />
           <% } %>
           <p><strong>Date:</strong> <%= event.date %></p>
           <p><strong>Time:</strong> <%= event.time %></p>
@@ -137,6 +137,7 @@
 
       const details = document.getElementById('details-' + index);
       const btn = allButtons[index];
+      const eventItem = document.getElementById('event-' + index); // <— Add this
 
       if (details.style.display === 'block') {
         details.style.display = 'none';
@@ -144,6 +145,8 @@
       } else {
         details.style.display = 'block';
         btn.textContent = 'Hide Details';
+        eventItem.scrollIntoView({ behavior: 'smooth', block: 'start' }); // <— Add this
+
       }
     }
 
