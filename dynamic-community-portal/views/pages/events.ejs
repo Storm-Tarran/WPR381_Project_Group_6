@@ -1,15 +1,99 @@
 <%- include('../partials/header') %>
 
 <% const events = [
-  { title: 'Community Clean-Up', date: '2023-10-15', location: 'Central Park', description: 'Join us for a community clean-up event to beautify our local park.' },
-  { title: 'Food Drive', date: '2023-11-01', location: 'Community Center', description: 'Help us collect food donations for those in need.' },
-    { title: 'Neighborhood Watch Meeting', date: '2023-11-10', location: 'Community Center', description: 'Join us to discuss safety and security in our neighborhood.' },
-    { title: 'Book Club', date: '2023-11-20', location: 'Local Library', description: 'Join us for a discussion on this month\'s book selection.' },
-    { title: 'Community Potluck', date: '2023-12-01', location: 'Community Center', description: 'Bring a dish to share and enjoy a meal with your neighbors.' },
-    { title: 'Holiday Parade', date: '2023-12-15', location: 'Main Street', description: 'Join us for the annual holiday parade featuring floats, music, and fun!' },
-    { title: 'New Year\'s Eve Celebration', date: '2023-12-31', location: 'Town Square', description: 'Ring in the new year with fireworks and festivities!' }
-];
-%>
+  {
+    title: 'Community Clean-Up',
+    date: '2023-10-15',
+    time: '09:00 AM – 12:00 PM',
+    location: 'Central Park',
+    description: 'Join us for a community clean-up event to beautify our local park.',
+    organizer: 'John Smith',
+    contact: 'john@greencommunity.org',
+    category: 'Volunteer',
+    price: 'Free',
+    imageUrl: '/images/cleanup.jpg',
+    registrationLink: 'https://example.com/register-cleanup'
+  },
+  {
+    title: 'Food Drive',
+    date: '2023-11-01',
+    time: '10:00 AM – 4:00 PM',
+    location: 'Community Center',
+    description: 'Help us collect food donations for those in need.',
+    organizer: 'Anna Martinez',
+    contact: 'anna@foodhelp.org',
+    category: 'Charity',
+    price: 'Free',
+    imageUrl: '/images/food-drive.jpg',
+    registrationLink: 'https://example.com/register-fooddrive'
+  },
+  {
+    title: 'Neighborhood Watch Meeting',
+    date: '2023-11-10',
+    time: '06:30 PM – 08:00 PM',
+    location: 'Community Center',
+    description: 'Join us to discuss safety and security in our neighborhood.',
+    organizer: 'Officer Daniels',
+    contact: 'watch@neighborhood.org',
+    category: 'Community Meeting',
+    price: 'Free',
+    imageUrl: '/images/watch-meeting.jpg',
+    registrationLink: 'https://example.com/register-watch'
+  },
+  {
+    title: 'Book Club',
+    date: '2023-11-20',
+    time: '05:00 PM – 06:30 PM',
+    location: 'Local Library',
+    description: 'Join us for a discussion on this month\'s book selection.',
+    organizer: 'Linda Choi',
+    contact: 'linda@library.org',
+    category: 'Social',
+    price: 'Free',
+    imageUrl: '/images/book-club.jpg',
+    registrationLink: 'https://example.com/register-bookclub'
+  },
+  {
+    title: 'Community Potluck',
+    date: '2023-12-01',
+    time: '06:00 PM – 09:00 PM',
+    location: 'Community Center',
+    description: 'Bring a dish to share and enjoy a meal with your neighbors.',
+    organizer: 'Mark Davis',
+    contact: 'mark@neighborsunite.org',
+    category: 'Social',
+    price: 'Free',
+    imageUrl: '/images/potluck.jpg',
+    registrationLink: 'https://example.com/register-potluck'
+  },
+  {
+    title: 'Holiday Parade',
+    date: '2023-12-15',
+    time: '03:00 PM – 06:00 PM',
+    location: 'Main Street',
+    description: 'Join us for the annual holiday parade featuring floats, music, and fun!',
+    organizer: 'Event Committee',
+    contact: 'events@cityhall.org',
+    category: 'Festival',
+    price: 'Free',
+    imageUrl: '/images/parade.jpg',
+    registrationLink: 'https://example.com/register-parade'
+  },
+  {
+    title: 'New Year\'s Eve Celebration',
+    date: '2023-12-31',
+    time: '08:00 PM – 12:30 AM',
+    location: 'Town Square',
+    description: 'Ring in the new year with fireworks and festivities!',
+    organizer: 'City Council',
+    contact: 'celebrate@city.org',
+    category: 'Celebration',
+    price: 'Free',
+    imageUrl: '/images/newyear.jpg',
+    registrationLink: 'https://example.com/register-newyear'
+  }
+]; %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,89 +101,78 @@
   <meta charset="UTF-8">
   <title>Events</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    main {
-      padding: 20px;
-    }
-    .event-list {
-      list-style: none;
-      padding: 0;
-    }
+    body { font-family: Arial, sans-serif }
+    main { padding: 20px; }
+    .event-list { list-style: none; padding: 0; }
     .event-item {
       border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-bottom: 10px;
+      border-radius: 10px;
+      margin-bottom: 15px;
       padding: 15px;
-      transition: background 0.3s ease;
+      background: #fdfdfd;
     }
-    .event-item:hover {
-      background: #f9f9f9;
-    }
-    .event-description {
-      display: none;
-      margin-top: 10px;
+    .event-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
     }
     .toggle-btn {
-      margin-top: 5px;
+      margin-top: 10px;
       padding: 5px 10px;
       cursor: pointer;
     }
+    .event-details { display: none; margin-top: 15px; }
     #searchInput {
-      margin-bottom: 20px;
-      padding: 8px;
+      padding: 10px;
       width: 100%;
       max-width: 400px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Upcoming Events</h1>
-    <input type="text" id="searchInput" placeholder="Search events...">
-  </header>
+  <h1>Upcoming Events</h1>
+  <input type="text" id="searchInput" placeholder="Search events...">
 
-  <main>
-    <% if (events && events.length > 0) { %>
-        <ul class="event-list" id="eventList">
-            <% events.forEach((event, index) => { %>
-              <li class="event-item" data-title="<%= event.title.toLowerCase() %>">
-                <h2><%= event.title %></h2>
-                <button class="toggle-btn" onclick="toggleDetails('<%= index %>')">Show Details</button>
-          
-                <div class="event-details" id="details-<%= index %>" style="display: none; margin-top: 10px;">
-                  <p><strong>Date:</strong> <%= event.date %></p>
-                  <p><strong>Location:</strong> <%= event.location %></p>
-                  <p><%= event.description %></p>
-                </div>
-              </li>
-            <% }) %>
-          </ul>
-    <% } else { %>
-      <p>No upcoming events at the moment.</p>
-    <% } %>
-  </main>
+  <ul class="event-list" id="eventList">
+    <% events.forEach((event, index) => { %>
+      <li class="event-item" data-title="<%= event.title.toLowerCase() %>">
+        <h2><%= event.title %></h2>
+        <button class="toggle-btn" onclick="toggleDetails('<%= index %>')">Show Details</button>
 
-  <footer>
-    <p>&copy; <%= new Date().getFullYear() %> Dynamic Community Portal</p>
-  </footer>
+        <div class="event-details" id="details-<%= index %>">
+          <% if (event.imageUrl) { %>
+            <img src="<%= event.imageUrl %>" alt="<%= event.title %>">
+          <% } %>
+          <p><strong>Date:</strong> <%= event.date %></p>
+          <p><strong>Time:</strong> <%= event.time %></p>
+          <p><strong>Location:</strong> <%= event.location %></p>
+          <p><strong>Organizer:</strong> <%= event.organizer %></p>
+          <p><strong>Contact:</strong> <a href="mailto:<%= event.contact %>"><%= event.contact %></a></p>
+          <p><strong>Category:</strong> <%= event.category %></p>
+          <p><strong>Price:</strong> <%= event.price %></p>
+          <p><%= event.description %></p>
+          <p><a href="<%= event.registrationLink %>" target="_blank">Register Here</a></p>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
 
   <script>
     function toggleDetails(index) {
       const allDetails = document.querySelectorAll('.event-details');
       const allButtons = document.querySelectorAll('.toggle-btn');
-  
+
       allDetails.forEach((el, i) => {
         if (i != index) {
           el.style.display = 'none';
           allButtons[i].textContent = 'Show Details';
         }
       });
-  
+
       const details = document.getElementById('details-' + index);
       const btn = allButtons[index];
-  
+
       if (details.style.display === 'block') {
         details.style.display = 'none';
         btn.textContent = 'Show Details';
@@ -108,21 +181,20 @@
         btn.textContent = 'Hide Details';
       }
     }
-  
+
     document.getElementById('searchInput').addEventListener('input', function () {
       const filter = this.value.toLowerCase();
       const items = document.querySelectorAll('#eventList .event-item');
-  
+
       items.forEach(item => {
         const title = item.getAttribute('data-title');
         item.style.display = title.includes(filter) ? '' : 'none';
       });
     });
   </script>
-  
-  
+<%- include('../partials/footer') %>
 </body>
 </html>
+
    
 
-<%- include('../partials/footer') %>
