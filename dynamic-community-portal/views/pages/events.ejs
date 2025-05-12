@@ -1,4 +1,38 @@
 <%- include('../partials/header') %>
+
+
+
 <h1>Upcoming Events</h1>
 <p>Check out what's happening!</p>
+
+<body>
+  
+<% const events = [
+  { title: 'Community Clean-Up', date: '2023-10-15', location: 'Central Park', description: 'Join us for a community clean-up event to beautify our local park.' },
+  { title: 'Food Drive', date: '2023-11-01', location: 'Community Center', description: 'Help us collect food donations for those in need.' },
+    { title: 'Neighborhood Watch Meeting', date: '2023-11-10', location: 'Community Center', description: 'Join us to discuss safety and security in our neighborhood.' },
+    { title: 'Book Club', date: '2023-11-20', location: 'Local Library', description: 'Join us for a discussion on this month\'s book selection.' },
+    { title: 'Community Potluck', date: '2023-12-01', location: 'Community Center', description: 'Bring a dish to share and enjoy a meal with your neighbors.' },
+    { title: 'Holiday Parade', date: '2023-12-15', location: 'Main Street', description: 'Join us for the annual holiday parade featuring floats, music, and fun!' },
+    { title: 'New Year\'s Eve Celebration', date: '2023-12-31', location: 'Town Square', description: 'Ring in the new year with fireworks and festivities!' }
+];
+%>
+    <main>
+      <% if (events && events.length > 0) { %>
+        <ul class="event-list">
+          <% events.forEach(event => { %>
+            <li class="event-item">
+              <h2><%= event.title %></h2>
+              <p><strong>Date:</strong> <%= event.date %></p>
+              <p><strong>Location:</strong> <%= event.location %></p>
+              <p><%= event.description %></p>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>No upcoming events at the moment.</p>
+      <% } %>
+    </main>
+</body>    
+
 <%- include('../partials/footer') %>

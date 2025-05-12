@@ -17,7 +17,7 @@
     "Express",
     "EJS"
   ],
-  "author": "Storm Tarran (600995), Don Sanvura(600340), Rourke Veller(601052), Johannes Cornelius Muller(578294)",
+  "author": "Storm Tarran (600995)",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.10",
