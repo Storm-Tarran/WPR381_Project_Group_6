@@ -1,12 +1,5 @@
 <%- include('../partials/header') %>
 
-
-
-<h1>Upcoming Events</h1>
-<p>Check out what's happening!</p>
-
-<body>
-  
 <% const events = [
   { title: 'Community Clean-Up', date: '2023-10-15', location: 'Central Park', description: 'Join us for a community clean-up event to beautify our local park.' },
   { title: 'Food Drive', date: '2023-11-01', location: 'Community Center', description: 'Help us collect food donations for those in need.' },
@@ -17,22 +10,119 @@
     { title: 'New Year\'s Eve Celebration', date: '2023-12-31', location: 'Town Square', description: 'Ring in the new year with fireworks and festivities!' }
 ];
 %>
-    <main>
-      <% if (events && events.length > 0) { %>
-        <ul class="event-list">
-          <% events.forEach(event => { %>
-            <li class="event-item">
-              <h2><%= event.title %></h2>
-              <p><strong>Date:</strong> <%= event.date %></p>
-              <p><strong>Location:</strong> <%= event.location %></p>
-              <p><%= event.description %></p>
-            </li>
-          <% }) %>
-        </ul>
-      <% } else { %>
-        <p>No upcoming events at the moment.</p>
-      <% } %>
-    </main>
-</body>    
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Events</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    main {
+      padding: 20px;
+    }
+    .event-list {
+      list-style: none;
+      padding: 0;
+    }
+    .event-item {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      padding: 15px;
+      transition: background 0.3s ease;
+    }
+    .event-item:hover {
+      background: #f9f9f9;
+    }
+    .event-description {
+      display: none;
+      margin-top: 10px;
+    }
+    .toggle-btn {
+      margin-top: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    #searchInput {
+      margin-bottom: 20px;
+      padding: 8px;
+      width: 100%;
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Upcoming Events</h1>
+    <input type="text" id="searchInput" placeholder="Search events...">
+  </header>
+
+  <main>
+    <% if (events && events.length > 0) { %>
+        <ul class="event-list" id="eventList">
+            <% events.forEach((event, index) => { %>
+              <li class="event-item" data-title="<%= event.title.toLowerCase() %>">
+                <h2><%= event.title %></h2>
+                <button class="toggle-btn" onclick="toggleDetails('<%= index %>')">Show Details</button>
+          
+                <div class="event-details" id="details-<%= index %>" style="display: none; margin-top: 10px;">
+                  <p><strong>Date:</strong> <%= event.date %></p>
+                  <p><strong>Location:</strong> <%= event.location %></p>
+                  <p><%= event.description %></p>
+                </div>
+              </li>
+            <% }) %>
+          </ul>
+    <% } else { %>
+      <p>No upcoming events at the moment.</p>
+    <% } %>
+  </main>
+
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> Dynamic Community Portal</p>
+  </footer>
+
+  <script>
+    function toggleDetails(index) {
+      const allDetails = document.querySelectorAll('.event-details');
+      const allButtons = document.querySelectorAll('.toggle-btn');
+  
+      allDetails.forEach((el, i) => {
+        if (i != index) {
+          el.style.display = 'none';
+          allButtons[i].textContent = 'Show Details';
+        }
+      });
+  
+      const details = document.getElementById('details-' + index);
+      const btn = allButtons[index];
+  
+      if (details.style.display === 'block') {
+        details.style.display = 'none';
+        btn.textContent = 'Show Details';
+      } else {
+        details.style.display = 'block';
+        btn.textContent = 'Hide Details';
+      }
+    }
+  
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const filter = this.value.toLowerCase();
+      const items = document.querySelectorAll('#eventList .event-item');
+  
+      items.forEach(item => {
+        const title = item.getAttribute('data-title');
+        item.style.display = title.includes(filter) ? '' : 'none';
+      });
+    });
+  </script>
+  
+  
+</body>
+</html>
+   
 
 <%- include('../partials/footer') %>
