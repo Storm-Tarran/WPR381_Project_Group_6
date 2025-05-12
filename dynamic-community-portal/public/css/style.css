@@ -54,6 +54,15 @@ body {
 .container1{
     padding: 20px;
 }
+.container1 h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.container1 #searchInput{
+    display: block;
+    margin: 1rem auto; 
+    box-sizing: border-box
+}
 .event-list { 
     list-style: none; 
     padding: 0; 
