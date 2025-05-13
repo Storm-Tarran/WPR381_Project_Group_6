@@ -17,8 +17,14 @@ router.get('/contact', (req, res) => {
     res.render('pages/contact');
 });
 
-router.get('/thankyou', (req, res) => {
-    res.render('pages/thankyou');
+router.post('/contact', (req, res) => {
+    const { name, email, message } = req.body;
+
+    res.render('pages/thankyou', {
+        name,
+        email,
+        message,
+    });
 });
 
 module.exports = router;
