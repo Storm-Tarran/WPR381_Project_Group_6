@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const contactMessages = []; //In memory array for contact form
+
 router.get('/', (req, res) => {
     res.render('pages/home');
 });
