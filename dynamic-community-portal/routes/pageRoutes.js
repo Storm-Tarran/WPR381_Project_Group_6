@@ -22,11 +22,16 @@ router.get('/contact', (req, res) => {
 router.post('/contact', (req, res) => {
     const { name, email, message } = req.body;
 
+    contactMessages.push({ name, email, message, date: new Date() }); //save in memory array
+
     res.render('pages/thankyou', {
         name,
         email,
         message,
     });
 });
+
+router.get('/thankyou', (req, res) => {
+  res.render('pages/thankyou');
 
 module.exports = router;
