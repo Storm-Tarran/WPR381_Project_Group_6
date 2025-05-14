@@ -20,9 +20,11 @@ router.get('/contact', (req, res) => {
 });
 
 router.post('/contact', (req, res) => {
-    const { name, email, message } = req.body;
+    const { name, email, phone, subject, message } = req.body;
+    const entry = { name, email, phone, subject, message, date: new Date() };
 
-    contactMessages.push({ name, email, message, date: new Date() }); //save in memory array
+    contactMessages.push(entry); //save in memory array
+    console.log("New Contact Entry: ", entry);
 
     res.render('pages/thankyou', {
         name,
@@ -30,8 +32,5 @@ router.post('/contact', (req, res) => {
         message,
     });
 });
-
-router.get('/thankyou', (req, res) => {
-  res.render('pages/thankyou');
 
 module.exports = router;

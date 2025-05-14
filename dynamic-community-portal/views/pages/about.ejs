@@ -1,67 +1,47 @@
 <%- include('../partials/header') %>
 
+<% const teamInfo = [ 
+  { 
+    photo: `/images/about/Storm.png`,    
+    memberName: `Storm Tarran 600995`,    
+    memberRole: `Backend Developer and Team Lead`,    
+    memberBio: `As our Team Lead & Backend Developer, Storm charts the project’s course and dives into the server-side code with equal gusto. She mentors the crew, keeps everyone on track with clear goals, and engineers the APIs that power our portal’s heartbeat. When she’s not coordinating sprints or optimizing database calls, you’ll find her championing collaboration and turning complex problems into smooth, scalable solutions!` 
+  },
+  { 
+    photo: `/images/about/Rourke.png`,   
+    memberName: `Rourke Veller 601052`,   
+    memberRole: `Backend and FrontEnd Developer`,    
+    memberBio: `As our Backend & Frontend Developer, Rourke is the bridge between sleek user experiences and rock-solid server logic. He crafts pixel-perfect interfaces in the browser by day and engineers efficient, scalable APIs by night—often in the same coffee session! Whether it’s styling a button or optimizing a database query, Rourke keeps our whole stack running smoothly and looking great.`
+  },
+  { 
+    photo: `/images/about/Don.png`,      
+    memberName: `Don Sanvura 600340`,      
+    memberRole: `Documents Manager`,   
+    memberBio: `As our Document Manager, Don is the guardian of every file and form—organizing policies, procedures, and project plans so nothing ever gets lost in the shuffle. He catalogs documents like a pro librarian, implements version control faster than you can say “update,” and makes sure every team member always has the right paperwork at their fingertips. Off-duty, he’s known to tame unruly filing cabinets and turn chaos into neatly archived order!`
+  },
+  { 
+    photo: `/images/about/Johannes.png`, 
+    memberName: `Johannes Muller 578294`, 
+    memberRole: `Data Manager`,       
+    memberBio: `As the team’s Data Manager, Johannes keeps our information orchestra in perfect harmony—collecting, cleaning, and curating all the numbers so every project hits the right note. He builds rock-solid databases, whips unruly spreadsheets into shape, and ensures everyone can instantly find the insights they need. When he’s not wrangling data, you’ll find him turning raw figures into clear stories and maybe sneaking in a little data-driven magic!`
+  }
+]; %>
+
 <section class="about-section">
   <div class="container">
     <h1 class="about-title">About Our Community</h1>
-    <p class="about-subtitle">
-      Our Community Portal brings neighbors together by sharing local events,
-      volunteer opportunities, and important announcements. We believe in
-      empowering everyone to take part in building a stronger, more engaged
-      neighborhood.
-    </p>
+    <p class="about-subtitle"> Our Community Portal brings neighbors together by sharing local events, volunteer opportunities, and important announcements. We believe in
+      empowering everyone to take part in building a stronger, more engaged neighborhood.</p>
 
     <div class="team-cards">
-      <!-- Card 1 -->
+      <% teamInfo.forEach(member => { %>
       <div class="team-card">
-        <img src="/images/about/Storm.png" alt="Storm Tarran 600995" class="team-card__photo"/>
-        <h3 class="team-card__name">Storm Tarran 600995</h3>
-        <p class="team-card__role">Backend Developer and Team Lead</p>
-        <p class="team-card__bio">
-          As our Team Lead & Backend Developer, Storm charts the project’s course and dives into the server-side code with equal 
-          gusto. She mentors the crew, keeps everyone on track with clear goals, and engineers the APIs that power our portal’s 
-          heartbeat. When she’s not coordinating sprints or optimizing database calls, you’ll find her championing collaboration 
-          and turning complex problems into smooth, scalable solutions!
-        </p>
+        <img src="<%= member.photo %>" alt="<%= member.memberName %>" class="team-card__photo"/>
+        <h3 class="team-card__name"><%= member.memberName %></h3>
+        <p class="team-card__role"><%= member.memberRole %></p>
+        <p class="team-card__bio"><%= member.memberBio %></p>
       </div>
-
-      <!-- Card 2 -->
-      <div class="team-card">
-        <img src="/images/about/Rourke.png" alt="Rourke Veller 601052" class="team-card__photo"/>
-        <h3 class="team-card__name">Rourke Veller 601052</h3>
-        <p class="team-card__role">Backend and FrontEnd Developer</p>
-        <p class="team-card__bio">
-          As our Backend & Frontend Developer, Rourke is the bridge between sleek user experiences and rock-solid server logic. 
-          He crafts pixel-perfect interfaces in the browser by day and engineers efficient, scalable APIs by night—often in the 
-          same coffee session! Whether it’s styling a button or optimizing a database query, Rourke keeps our whole stack running 
-          smoothly and looking great.
-        </p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="team-card">
-        <img src="/images/about/Don.png" alt="Don Sanvura 600340" class="team-card__photo"/>
-        <h3 class="team-card__name">Don Sanvura 600340</h3>
-        <p class="team-card__role">Document Manager</p>
-        <p class="team-card__bio">
-          As our Document Manager, Don is the guardian of every file and form—organizing policies, procedures, and project plans 
-          so nothing ever gets lost in the shuffle. He catalogs documents like a pro librarian, implements version control faster 
-          than you can say “update,” and makes sure every team member always has the right paperwork at their fingertips. Off-duty, 
-          he’s known to tame unruly filing cabinets and turn chaos into neatly archived order!
-        </p>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="team-card">
-        <img src="/images/about/Johannes.png" alt="Johannes Muller 578294" class="team-card__photo"/>
-        <h3 class="team-card__name">Johannes Muller 578294</h3>
-        <p class="team-card__role">Data Manager</p>
-        <p class="team-card__bio">
-          As the team’s Data Manager, Johannes keeps our information orchestra in perfect harmony—collecting, cleaning, 
-          and curating all the numbers so every project hits the right note. He builds rock-solid databases, whips unruly spreadsheets 
-          into shape, and ensures everyone can instantly find the insights they need. When he’s not wrangling data, you’ll find him 
-          turning raw figures into clear stories and maybe sneaking in a little data-driven magic!
-        </p>
-      </div>
+      <% }) %>
     </div>
   </div>
 </section>
